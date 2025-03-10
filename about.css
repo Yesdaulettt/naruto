@@ -1,0 +1,92 @@
+body {
+  background-color: black;
+}
+
+header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+  background-color: black;
+
+  margin-top: -20px;
+  margin-left: -30px;
+  padding: 10px;
+}
+
+.burger-menu {
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+.burger-menu div {
+  width: 100%;
+  height: 5px;
+  background-color: white;
+  transition: 0.3s;
+}
+.page1 h1 {
+  margin-top: 100px;
+  color: white;
+  text-align: center;
+}
+.logo {
+  height: 50px; 
+  margin-left: 30px;
+}
+
+.naruto {
+  color: white;
+  margin: 0 auto;
+  font-size: 20px;
+}
+.naruto p {
+  position: absolute;
+  top: 250px;
+  left: 350px;
+}
+.naruto img {
+  max-width: 300px;
+}
+.Sasuke {
+    width: 100%; 
+    color: white;
+    font-size: 20px;
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  .Sasuke img {
+    max-width: 300px;
+    float: right;
+    margin-left: 20px; 
+  }
+  
+  .Sasuke p {
+    max-width: 60%;
+    margin-left: 50px; 
+  }
+  
+  footer {
+    background-color: black;
+    color: #ff7300; 
+    text-align: center;
+    padding: 20px;
+    font-family: "Bangers", sans-serif;
+    font-size: 18px;
+    position: absolute;
+    
+    margin-bottom: -100px;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -4px 8px rgba(255, 165, 0, 0.5);
+  }

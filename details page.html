@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Details</title>
+    <style>
+        body { background-color: #111; color: white; font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background: #222; border-radius: 10px; }
+        img { width: 100%; max-height: 400px; border-radius: 10px; object-fit: cover; }
+        h1 { color: #00aaff; }
+        p { font-size: 16px; }
+        .back { display: inline-block; margin-top: 10px; padding: 10px; background: #00aaff; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"></h1>
+        <img id="animeImage" src="" alt="Anime Image">
+        <p><strong>Episodes:</strong> <span id="episodes"></span></p>
+        <p><strong>Release Date:</strong> <span id="release"></span></p>
+        <p><strong>Rating:</strong> ⭐ <span id="rating"></span></p>
+        <a href="anime.html" class="back">⬅ Back to Anime List</a>
+    </div>
+
+    <script>
+        const anime = JSON.parse(localStorage.getItem("selectedAnime"));
+        if (anime) {
+            document.getElementById("title").textContent = anime.title;
+            document.getElementById("animeImage").src = anime.images.jpg.image_url;
+            document.getElementById("episodes").textContent = anime.episodes || "?";
+            document.getElementById("release").textContent = anime.aired.from ? anime.aired.from.split("T")[0] : "?";
+            document.getElementById("rating").textContent = anime.score || "N/A";
+        }
+    </script>
+</body>
+</html>

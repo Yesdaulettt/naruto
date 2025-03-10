@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap");
+@font-face {
+  font-family: "NarutoFont";
+  src: url("fonts/NinjaNaruto.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  padding: 0 20px;
+  background-color: black;
+  z-index: 2;
+  margin-top: -20px;
+  margin-left: -30px;
+  padding: 10px;
+}
+
+.burger-menu {
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 40px;
+}
+
+.burger-menu div {
+  width: 100%;
+  height: 5px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.logo {
+  height: 50px; /* Adjust size */
+  margin-left: 30px;
+}
+
+/* videp */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .video-container video {
+    object-fit: cover;
+    aspect-ratio: 9 / 16; 
+  }
+}
+
+.second-video-section {
+  margin-top: 1900px;
+  /* margin-left: 60px;
+  margin-right: 6cap; */
+  position: relative;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden;
+}
+
+.second-video-section .second-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+}
+
+.overlay-content h1 {
+  font-family: "Bangers", sans-serif;
+  font-size: 48px;
+  color: #ffa500; 
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 5px rgba(255, 165, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.overlay-content h2 {
+  color: #ff0000;
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Bangers", sans-serif;
+}
+
+.overlay-content img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  cursor: pointer;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -1000px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 100%;
+}
+
+
+
+.start-button {
+  font-family: "Bangers", sans-serif;
+  font-size: 24px;
+  padding: 15px 40px;
+  background-color: #ff7300; 
+  border: 3px solid black;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px black;
+  transition: 0.3s;
+  position: relative;
+}
+
+.start-button:hover {
+  background-color: #ff4500; 
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px black;
+}
+
+
+.start-button:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0px black;
+}
+@media (max-width: 600px) {
+  .second-video-section video {
+    object-fit: cover;
+    aspect-ratio: 9 / 16; 
+  }
+}
+/* Footer */
+footer {
+  background-color: black;
+  color: #ff7300; 
+  text-align: center;
+  padding: 20px;
+  font-family: "Bangers", sans-serif;
+  font-size: 18px;
+  position: absolute;
+  margin-bottom: -1200px;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0px -4px 8px rgba(255, 165, 0, 0.5);
+}

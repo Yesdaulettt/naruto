@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naruto</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="burger-menu" onclick="goToMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <img src="./logo/Naruto_logo.svg.png" alt="Logo" class="logo" />
+    </header>
+    <div class="video-container">
+      <video autoplay loop muted playsinline>
+        <source src="./video/0306.mov" type="video/mp4" />
+      </video>
+    </div>
+
+    <h1
+      style="
+        color: white;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Rock Salt', cursive;
+        font-size: 3rem;
+        color: #ff8300;
+        font-weight: 900;
+      "
+    >
+      Welcome to World of Naruto
+    </h1>
+    <div class="second-video-section">
+      <video autoplay loop muted playsinline class="second-video">
+        <source src="./video/sharingan.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-content">
+        <h1>Fan site, for loyal fans</h1>
+        <div class="character">
+          <img src="./img/itachi.png" alt="Itachi Uchiha" />
+          <h2>Itachi Uchiha</h2>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="button-container">
+      <a href="./menu.html">
+        <button class="start-button">Start</button>
+      </a>
+    </div>
+ 
+<footer>
+    <p>© 2025 Naruto Fan Site. Made with passion for loyal fans!</p>
+  </footer>
+  
+  </body>
+  <script src="./script.js"></script>
+</html>
