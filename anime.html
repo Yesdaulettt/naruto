@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Anime</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500&display=swap");
+
+      body {
+        background-color: #000000;
+        color: white;
+        font-family: "Oswald", sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      header {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+      
+        padding: 0 20px;
+        background-color: black;
+        z-index: 100;
+        opacity: 1;
+        margin-top: -20px;
+        margin-left: -30px;
+        padding: 10px;
+      }
+
+      .burger-menu {
+        width: 40px;
+        height: 30px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 20px;
+      }
+
+      .burger-menu div {
+        width: 100%;
+        height: 5px;
+        background-color: white;
+        transition: 0.3s;
+      }
+
+      .logo {
+        height: 50px; 
+        margin-left: 30px;
+      }
+      .all {
+        margin-top: 140px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        color: #ff4500;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: "Bebas Neue", sans-serif;
+      }
+
+      #animeContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .anime-card {
+        width: 220px;
+        padding: 12px;
+        text-align: center;
+        background: linear-gradient(135deg, #222, #1a1a1a);
+        border-radius: 12px;
+        box-shadow: 0 0 8px rgba(255, 165, 0, 0.5);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .anime-card.show {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .anime-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 165, 0, 0.8);
+      }
+
+      .anime-card img {
+        width: 190px;
+        height: 260px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .anime-card img:hover {
+        transform: scale(1.08);
+      }
+
+      .anime-card a {
+        text-decoration: none;
+        color: #ffcc00;
+        display: block;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-top: 8px;
+        text-shadow: 2px 2px 5px rgba(255, 200, 0, 0.5);
+        transition: color 0.3s ease-in-out;
+      }
+
+      .anime-card a:hover {
+        color: #ff4500;
+      }
+
+      .anime-info {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-top: 5px;
+        line-height: 1.4;
+      }
+
+      .rating {
+        color: #ffcc00;
+        font-weight: bold;
+      }
+      footer {
+        background-color: black;
+        color: #ff7300; /* Naruto orange */
+        text-align: center;
+        padding: 20px;
+        font-family: "Bangers", sans-serif;
+        font-size: 18px;
+        position: absolute;
+        /* margin-top: 150px; */
+        margin-bottom: -1800px;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0px -4px 8px rgba(255, 165, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="burger-menu" onclick="goToMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <img src="./logo/Naruto_logo.svg.png" alt="Logo" class="logo" />
+      <button
+        id="logout-button"
+        style="
+          margin-left: auto;
+          margin-right: 50px;
+          padding: 5px 10px;
+          background: #ff4500;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        "
+      >
+        Log out
+      </button>
+    </header>
+    <div class="all">
+      <h1>Top Anime</h1>
+      <div id="animeContainer"></div>
+    </div>
+
+    <footer>
+      <p>© 2025 Naruto Fan Site. Made with passion for loyal fans!</p>
+    </footer>
+  </body>
+  <script>
+    function goToMenu() {
+      window.location.href = "menu.html";
+    }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+     
+      const authToken = localStorage.getItem("authToken");
+
+      if (!authToken) {
+        window.location.href = "login.html";
+        return; // Stop execution
+      }
+
+      
+      document
+        .getElementById("logout-button")
+        .addEventListener("click", function () {
+          localStorage.removeItem("authToken"); 
+          window.location.href = "login.html"; 
+        });
+
+      
+      async function show() {
+        try {
+          const response = await fetch("https://api.jikan.moe/v4/top/anime");
+          const data = await response.json();
+          const topAnimes = data.data.slice(0, 50);
+          const container = document.getElementById("animeContainer");
+
+          container.innerHTML = ""; 
+
+          topAnimes.forEach((anime) => {
+            const animeDiv = document.createElement("div");
+            animeDiv.className = "anime-card";
+
+            const img = document.createElement("img");
+            img.src = anime.images.jpg.image_url;
+            img.onclick = () => showDetails(anime);
+
+            const titleLink = document.createElement("a");
+            titleLink.href = anime.url;
+            titleLink.textContent = anime.title;
+            titleLink.target = "_blank";
+
+            const infoDiv = document.createElement("div");
+            infoDiv.className = "anime-info";
+            infoDiv.innerHTML = `
+              <strong>Episodes:</strong> ${anime.episodes || "Unknown"}<br>
+              <strong>Release Year:</strong> ${
+                anime.aired.prop.from.year || "Unknown"
+              }<br>
+              <strong>Rating:</strong> <span class="rating">${
+                anime.score || "N/A"
+              }</span>
+            `;
+
+            animeDiv.appendChild(img);
+            animeDiv.appendChild(titleLink);
+            animeDiv.appendChild(infoDiv);
+            container.appendChild(animeDiv);
+          });
+
+          revealOnScroll();
+        } catch (error) {
+          console.error("Error fetching anime:", error);
+        }
+      }
+
+     
+      function showDetails(anime) {
+        localStorage.setItem("selectedAnime", JSON.stringify(anime));
+        window.location.href = "details page.html";
+      }
+
+      function revealOnScroll() {
+        const animeCards = document.querySelectorAll(".anime-card");
+
+        function checkVisibility() {
+          const triggerBottom = window.innerHeight * 0.85;
+          animeCards.forEach((card) => {
+            const cardTop = card.getBoundingClientRect().top;
+            if (cardTop < triggerBottom) {
+              card.classList.add("show");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", checkVisibility);
+        checkVisibility();
+      }
+
+      
+      show();
+
+    });
+  </script>
+</html>
